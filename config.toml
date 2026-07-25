@@ -1,8 +1,7 @@
-# Swap this for the real domain once it is registered and on Cloudflare.
-# It has to match the hostname in the tunnel ingress rule on the homeserver
+# Must match the hostname in the tunnel ingress rule on the homeserver
 # (modules/system/services/website.nix in the nixos config), otherwise links
 # and the feed URL point somewhere that does not exist.
-base_url = "https://example.com"
+base_url = "https://kron-berger.com"
 
 title = "Martin Kronberger"
 description = "Computational physics, Rust, and things I have written down."
