@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}{{ config.title }}{% endblock %}</title>
     <meta name="description" content="{% block description %}{{ config.description }}{% endblock %}" />
-    <link rel="stylesheet" href="{{ get_url(path='style.css') | safe }}" />
+    {# `cachebust` appends a content hash to the URL. Cloudflare applies a 4h
+       browser cache TTL to static extensions regardless of what the origin
+       sends, so without this a stylesheet change can take hours to reach a
+       returning visitor. With it, changed content means a changed URL. #}
+    <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) | safe }}" />
     {% if config.generate_feeds %}
       <link rel="alternate" type="application/atom+xml" title="{{ config.title }}"
             href="{{ get_url(path='atom.xml') | safe }}" />
