@@ -3,40 +3,31 @@ title = "Martin Kronberger"
 template = "index.html"
 +++
 
-Physics at TU Wien, mostly on the computational side.
-I write a lot of Rust, run everything on NixOS, and contribute to open source
-terminal tooling.
-
-<!-- Everything below is scaffolding with placeholder facts. Replace the prose,
-     keep the heading structure — templates/index.html styles by heading level. -->
+Physics student at TU Wien.
 
 ## Research
 
-**Institute of Applied Physics, TU Wien** — *since 20XX*
-One or two sentences on what you actually work on, in plain language.
-What question, what method, what you built.
+**Institute of Applied Physics, TU Wien** — *since 2025*
 
 ## Education
 
-**MSc Technical Physics**, TU Wien — *20XX–present*
-Thesis topic, supervisor, one line on the subject.
+**MSc Technical Physics**, TU Wien — *2026–present*
 
-**BSc Technical Physics**, TU Wien — *20XX–20XX*
-Thesis topic, one line.
+**BSc Technical Physics**, TU Wien — *2022–2026*
+Thesis: [Characterization of Continuum Gas Flow in High-Pressure Micro-Reactor Assembly](https://github.com/kronberger-droid/thesis_bachelor)
 
 ## Skills
 
-**Languages** Rust, Python, C/C++, Nix, Typst
-**Computing** HPC workloads on VSC-4/VSC-5, NixOS infrastructure, Linux systems administration
-**Methods** Fill in the simulation and analysis methods you actually use.
+**Languages** Rust, Nix, Typst
+
+**Computing** NixOS infrastructure, Linux systems administration
 
 ## Open source
 
-Regular contributor to [reedline](https://github.com/nushell/reedline), the line
-editor behind Nushell — Vi and Helix edit modes, cursor and selection handling.
-See [Projects](/projects/) for the rest.
+Core team member at [nushell](https://github.com/nushell), maintaining its line-editor [reedline](https://github.com/nushell/reedline).
+See [Projects](/projects/) for some of my own smaller projects.
 
 ## Contact
 
-Reachable by [email](mailto:martin.kronberger@gmx.at), or on
+Reachable by [email](mailto:kronberger@proton.me), or on
 [GitHub](https://github.com/kronberger-droid).

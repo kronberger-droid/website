@@ -47,6 +47,6 @@ github = "https://github.com/kronberger-droid"
 nav = [
   {name = "CV", url = "/"},
   {name = "Blog", url = "/blog/"},
-  {name = "Publications", url = "/publications/"},
+  {name = "Science", url = "/science/"},
   {name = "Projects", url = "/projects/"},
 ]
