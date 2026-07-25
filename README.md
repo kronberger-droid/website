@@ -29,15 +29,37 @@ nix build          # produce the site exactly as the server will
 
 ## Adding content
 
-**A blog post** — a file in `content/blog/` with `title` and `date` set.
+**A blog post.**
+A file in `content/blog/` with `title` and `date` set.
 The filename becomes the URL slug.
 
-**A publication** — copy `content/publications/example-publication.md`, put the
-PDF in `static/publications/`, and point `extra.pdf` at it.
-The markdown body is the plain-language summary.
+**A publication.**
+A file in `content/publications/`.
+Drop the PDF in `static/publications/` and point `extra.pdf` at it.
+The markdown body is the plain-language summary, and every `extra` field is
+optional, so an entry with no DOI yet just renders without that link.
 
-**A project** — a file in `content/projects/` with `extra.repo` set and a
-`weight` controlling where it lands in the list.
+```toml
++++
+title = "Paper title"
+date = 2026-03-14
+
+[extra]
+authors = "M. Kronberger, A. Coauthor"
+venue = "Journal of Something 12(3), 45–67"
+pdf = "/publications/paper-slug.pdf"
+doi = "10.1000/xyz123"
+arxiv = "2603.01234"
+code = "https://github.com/kronberger-droid/some-analysis"
++++
+
+Two or three sentences for someone outside the field.
+```
+
+**A project.**
+A file in `content/projects/` with `extra.repo` set and a `weight` controlling
+where it lands in the list.
+Projects carry no date, so they are ordered by `weight` alone.
 
 ## Publishing
 
@@ -52,6 +74,7 @@ deploy .#homeserver
 ```
 
 `nix build .#packages.x86_64-linux.default` reads from **git**, not the working
-tree — an untracked file is invisible to the build and produces no error, it
-just silently does not appear on the site.
-`git add` before building.
+tree.
+An untracked file is invisible to the build and produces no error, it just
+silently does not appear on the site.
+So `git add` before building.
