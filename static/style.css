@@ -1,0 +1,285 @@
+/* Single stylesheet, no framework, no webfonts. System font stack means zero
+   network requests for typography and no layout shift on load. */
+
+:root {
+  /* Required for the CSS `light-dark()` colours Zola emits on highlighted code
+     spans. Also makes scrollbars and form controls follow the system theme. */
+  color-scheme: light dark;
+
+  --bg: #fdfdfc;
+  --fg: #1c1c1a;
+  --muted: #6b6b66;
+  --accent: #2c5f7c;
+  --rule: #e3e3df;
+  --code-bg: #f2f2ee;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161a;
+    --fg: #d8d8d2;
+    --muted: #8b8b85;
+    --accent: #7fb3d0;
+    --rule: #2c2c31;
+    --code-bg: #1f1f24;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  max-width: 42rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  font-size: 0.925rem;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-header nav a:hover,
+.site-header nav a.active {
+  color: var(--fg);
+  text-decoration: underline;
+}
+
+/* Typography -------------------------------------------------------------- */
+
+h1 {
+  font-size: 1.7rem;
+  line-height: 1.25;
+  margin: 0 0 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 2.5rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 0.9rem 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+blockquote {
+  margin: 1.25rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+}
+
+/* CV frontpage ------------------------------------------------------------ */
+
+/* On the CV, a bold lead followed by an em-dashed date reads as one line, so
+   the paragraph directly after a bold-led line gets pulled tight against it. */
+.cv h2 {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cv strong + em,
+.cv em {
+  color: var(--muted);
+  font-style: normal;
+}
+
+/* Lists of things --------------------------------------------------------- */
+
+.post-list,
+.entry-list,
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-list time {
+  flex: 0 0 6rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.post-list .excerpt {
+  flex-basis: 100%;
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.925rem;
+}
+
+.entry {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.entry .summary p:last-child {
+  margin-bottom: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.meta .venue {
+  font-style: italic;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.tag {
+  padding: 0.05rem 0.45rem;
+  background: var(--code-bg);
+  border-radius: 3px;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.empty {
+  padding: 1.5rem 0;
+  color: var(--muted);
+}
+
+/* Post -------------------------------------------------------------------- */
+
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post .meta {
+  margin-top: -0.75rem;
+}
+
+/* Zola's `insert_anchor_links = "heading"` wraps each heading in a link. Hide
+   the "#" until the heading is hovered so it does not clutter the page. */
+.zola-anchor {
+  margin-left: 0.35rem;
+  color: var(--muted);
+  opacity: 0;
+  text-decoration: none;
+}
+
+h1:hover > .zola-anchor,
+h2:hover > .zola-anchor,
+h3:hover > .zola-anchor {
+  opacity: 1;
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9rem;
+}

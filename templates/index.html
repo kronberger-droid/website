@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{# The CV frontpage. Body comes straight from content/_index.md, so the CV is
+   written as plain markdown rather than as structured front matter. That trade
+   is deliberate: editing a CV is prose work, and a `##`-per-section markdown
+   file stays readable in a text editor. The cost is that the styling can only
+   key off heading levels, not off named fields. #}
+
+{% block content %}
+  <article class="cv">
+    {{ section.content | safe }}
+  </article>
+
+  {% set blog = get_section(path="blog/_index.md") %}
+  {% if blog.pages | length > 0 %}
+    <section class="recent">
+      <h2>Recent posts</h2>
+      <ul class="post-list">
+        {% for post in blog.pages | slice(end=3) %}
+          <li>
+            <time datetime="{{ post.date }}">{{ post.date | date(format="%Y-%m-%d") }}</time>
+            <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+{% endblock %}

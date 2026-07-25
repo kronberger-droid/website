@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} — {{ config.title }}{% endblock %}
+
+{# Each publication is one file in content/publications/. The markdown body is
+   the short summary and everything bibliographic lives under [extra], so the
+   summary stays writable as prose instead of being crammed into a TOML string.
+
+   The list is flat and newest-first (`sort_by = "date"` on the section). The
+   obvious alternative is grouping under year headings — see the note in the
+   chat, that is a one-block change here. #}
+
+{% block content %}
+  <h1>{{ section.title }}</h1>
+  {{ section.content | safe }}
+
+  <ul class="entry-list">
+    {% for pub in section.pages %}
+      <li class="entry">
+        <h2>{{ pub.title }}</h2>
+
+        <p class="meta">
+          {% if pub.extra.authors %}<span class="authors">{{ pub.extra.authors }}</span>{% endif %}
+          {% if pub.extra.venue %}<span class="venue">{{ pub.extra.venue }}</span>{% endif %}
+          <time datetime="{{ pub.date }}">{{ pub.date | date(format="%Y") }}</time>
+        </p>
+
+        <div class="summary">{{ pub.content | safe }}</div>
+
+        <p class="links">
+          {% if pub.extra.pdf %}
+            {# `download` makes the browser save the file instead of opening the
+               built-in PDF viewer, which is what a "download section" implies. #}
+            <a class="button" href="{{ get_url(path=pub.extra.pdf) | safe }}" download>PDF</a>
+          {% endif %}
+          {% if pub.extra.doi %}
+            <a href="https://doi.org/{{ pub.extra.doi }}">doi:{{ pub.extra.doi }}</a>
+          {% endif %}
+          {% if pub.extra.arxiv %}
+            <a href="https://arxiv.org/abs/{{ pub.extra.arxiv }}">arXiv:{{ pub.extra.arxiv }}</a>
+          {% endif %}
+          {% if pub.extra.code %}
+            <a href="{{ pub.extra.code }}">Code</a>
+          {% endif %}
+        </p>
+      </li>
+    {% else %}
+      <li class="empty">Nothing published here yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

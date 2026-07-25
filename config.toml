@@ -1,0 +1,53 @@
+# Swap this for the real domain once it is registered and on Cloudflare.
+# It has to match the hostname in the tunnel ingress rule on the homeserver
+# (modules/system/services/website.nix in the nixos config), otherwise links
+# and the feed URL point somewhere that does not exist.
+base_url = "https://example.com"
+
+title = "Martin Kronberger"
+description = "Computational physics, Rust, and things I have written down."
+
+default_language = "en"
+
+# No search index: it ships a JSON blob of the whole site to every visitor,
+# which is not worth it until there is enough content to search.
+build_search_index = false
+
+# Atom feed for the blog. Zola 0.19 renamed these from the singular forms.
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+taxonomies = [{name = "tags", feed = true}]
+
+[markdown]
+# Renders footnotes at the end of the page rather than inline.
+bottom_footnotes = true
+
+# Zola 0.22 replaced syntect with Giallo (VSCode grammars/themes), which moved
+# highlighting into this sub-table and retired the old syntect theme names.
+#
+# Giving both a light and a dark theme with the default `style = "inline"` makes
+# Zola emit CSS `light-dark()` colours directly on the spans, so code blocks
+# follow the reader's system theme with no second stylesheet and no extra
+# request. `style = "class"` would instead write giallo-light.css and
+# giallo-dark.css into static/ for us to link separately — more files for no
+# benefit at this size. `light-dark()` needs `color-scheme` declared, which
+# static/style.css does on :root.
+[markdown.highlighting]
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+[extra]
+# Everything under [extra] is yours — Zola passes it to templates as `config.extra`.
+# Used by templates/base.html for the header and footer.
+author = "Martin Kronberger"
+email = "martin.kronberger@gmx.at"
+github = "https://github.com/kronberger-droid"
+
+# Header navigation. Order here is the order rendered.
+nav = [
+  {name = "CV", url = "/"},
+  {name = "Blog", url = "/blog/"},
+  {name = "Publications", url = "/publications/"},
+  {name = "Projects", url = "/projects/"},
+]

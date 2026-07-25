@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{{ config.title }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ config.description }}{% endblock %}" />
+    <link rel="stylesheet" href="{{ get_url(path='style.css') | safe }}" />
+    {% if config.generate_feeds %}
+      <link rel="alternate" type="application/atom+xml" title="{{ config.title }}"
+            href="{{ get_url(path='atom.xml') | safe }}" />
+    {% endif %}
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="{{ get_url(path='/') | safe }}">{{ config.extra.author }}</a>
+      <nav>
+        {% for item in config.extra.nav %}
+          {# `current_path` lets the active tab render differently without JS. #}
+          <a href="{{ get_url(path=item.url) | safe }}"
+             {% if current_path == item.url %}class="active"{% endif %}>{{ item.name }}</a>
+        {% endfor %}
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <a href="mailto:{{ config.extra.email }}">{{ config.extra.email }}</a>
+      <a href="{{ config.extra.github }}">GitHub</a>
+      <a href="{{ get_url(path='atom.xml') | safe }}">Feed</a>
+    </footer>
+  </body>
+</html>

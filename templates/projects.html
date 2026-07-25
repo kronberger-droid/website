@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} — {{ config.title }}{% endblock %}
+
+{# Projects are ordered by `weight` (set per file), not by date — a project's
+   importance is not a function of when it was started, and hand-ordering a
+   short list is less work than maintaining fake dates. #}
+
+{% block content %}
+  <h1>{{ section.title }}</h1>
+  {{ section.content | safe }}
+
+  <ul class="entry-list">
+    {% for project in section.pages %}
+      <li class="entry">
+        <h2>
+          {% if project.extra.repo %}
+            <a href="{{ project.extra.repo }}">{{ project.title }}</a>
+          {% else %}
+            {{ project.title }}
+          {% endif %}
+        </h2>
+
+        <p class="meta">
+          {% if project.extra.language %}<span class="lang">{{ project.extra.language }}</span>{% endif %}
+          {% if project.extra.role %}<span class="role">{{ project.extra.role }}</span>{% endif %}
+        </p>
+
+        <div class="summary">{{ project.content | safe }}</div>
+
+        {% if project.extra.repo %}
+          <p class="links"><a class="button" href="{{ project.extra.repo }}">Repository</a></p>
+        {% endif %}
+      </li>
+    {% else %}
+      <li class="empty">Nothing listed here yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
