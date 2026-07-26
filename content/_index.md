@@ -14,7 +14,7 @@ Physics student at TU Wien.
 **MSc Technical Physics**, TU Wien — *2026–present*
 
 **BSc Technical Physics**, TU Wien — *2022–2026*
-Thesis: [Characterization of Continuum Gas Flow in High-Pressure Micro-Reactor Assembly](https://github.com/kronberger-droid/thesis_bachelor)
+Thesis: [Characterization of Continuum Gas Flow in a High-Pressure Micro-Reactor Assembly](/science/continuum-gas-flow-micro-reactor/)
 
 ## Skills
 
