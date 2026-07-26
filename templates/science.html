@@ -2,9 +2,9 @@
 
 {% block title %}{{ section.title }} — {{ config.title }}{% endblock %}
 
-{# Each publication is one file in content/publications/. The markdown body is
-   the short summary and everything bibliographic lives under [extra], so the
-   summary stays writable as prose instead of being crammed into a TOML string.
+{# Each entry is one file in content/science/. The markdown body is the summary
+   and everything bibliographic lives under [extra], so the summary stays
+   writable as prose instead of being crammed into a TOML string.
 
    The list is flat and newest-first (`sort_by = "date"` on the section). The
    obvious alternative is grouping under year headings — see the note in the
@@ -29,9 +29,20 @@
 
         <p class="links">
           {% if pub.extra.pdf %}
-            {# `download` makes the browser save the file instead of opening the
-               built-in PDF viewer, which is what a "download section" implies. #}
-            <a class="button" href="{{ get_url(path=pub.extra.pdf) | safe }}" download>PDF</a>
+            {# Either a path under static/ or an external URL, currently a GitHub
+               release asset. `get_url` resolves against base_url, so it must only
+               ever see the local form — handing it an external URL mangles it.
+
+               The `download` attribute is same-origin only, browsers ignore it
+               cross-origin, so it is pointless on the external branch. Not a
+               problem in practice: GitHub serves release assets with
+               `Content-Disposition: attachment` already, so both branches save
+               the file instead of opening the built-in PDF viewer. #}
+            {% if pub.extra.pdf is starting_with("http") %}
+              <a class="button" href="{{ pub.extra.pdf | safe }}">PDF</a>
+            {% else %}
+              <a class="button" href="{{ get_url(path=pub.extra.pdf) | safe }}" download>PDF</a>
+            {% endif %}
           {% endif %}
           {% if pub.extra.doi %}
             <a href="https://doi.org/{{ pub.extra.doi }}">doi:{{ pub.extra.doi }}</a>
@@ -39,8 +50,16 @@
           {% if pub.extra.arxiv %}
             <a href="https://arxiv.org/abs/{{ pub.extra.arxiv }}">arXiv:{{ pub.extra.arxiv }}</a>
           {% endif %}
+          {% if pub.extra.source %}
+            {# Where the document itself is written, as opposed to `code`, which
+               is the analysis behind it. Emitted raw: it is an external URL, so
+               it must not go through `get_url`, which resolves against base_url.
+               Promoted to a button when there is no PDF, so an entry always has
+               one obvious way to actually read the thing. #}
+            <a {% if not pub.extra.pdf %}class="button" {% endif %}href="{{ pub.extra.source | safe }}">Source</a>
+          {% endif %}
           {% if pub.extra.code %}
-            <a href="{{ pub.extra.code }}">Code</a>
+            <a href="{{ pub.extra.code | safe }}">Code</a>
           {% endif %}
         </p>
       </li>
