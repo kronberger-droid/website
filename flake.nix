@@ -1,5 +1,5 @@
 {
-  description = "Personal website — CV, blog, publications, projects";
+  description = "Personal website — CV, blog, science, projects";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
