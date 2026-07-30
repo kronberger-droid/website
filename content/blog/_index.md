@@ -6,5 +6,3 @@ sort_by = "date"
 insert_anchor_links = "heading"
 generate_feeds = true
 +++
-
-Notes on things I have worked out, mostly Rust, Nix, and numerics.

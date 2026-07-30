@@ -12,22 +12,22 @@ source = "https://github.com/kronberger-droid/thesis_htl"
 **Topic.**
 Development of an emission-free sports motorcycle.
 
-**Assignment of tasks.**
-The plan is to develop a fully electrified e-motorcycle.
-The previous internal combustion engine is replaced by a control unit and electric motor unit.
-The two-wheeler should also have an independent battery system with a charging system that is individual for the motorcycle.
-Communication between the systems and humans is ensured via a central control unit.
+**Objective.**
+The goal was a fully electrified motorcycle.
+The original internal combustion engine was to be replaced by an electric motor and a control unit.
+The two-wheeler was also to carry its own battery system with a charger built for it specifically.
+Communication between the systems and the rider was to run through a central control unit.
 
-**Realisation.**
-A Duacati Monster S4 2001 is used as the chassis and provided with a specially developed frame.
-The motorcycle is driven by a brushless synchronous machine, which is supplied by a BMS controlled 50.4 volt lithium ion battery pack.
-The torque is transmitted from the engine to the road via a chain gear with a ratio of about 1/9.
-The periphery is controlled via a Raspberry Pi minicomputer and buttons on the handlebar.
-The Raspberry Pi also controls the user interface, which can be displayed and controlled via an 11.6 inch touch panel.
+**Realization.**
+A 2001 Ducati Monster S4 served as the chassis, fitted with a purpose-built frame.
+The motorcycle was driven by a brushless synchronous machine, supplied by a BMS-controlled 50.4 V lithium-ion battery pack.
+Torque reached the road through a chain drive with a ratio of about 1:9.
+The peripherals were controlled by a Raspberry Pi and buttons on the handlebar.
+The Raspberry Pi also ran the user interface, shown and operated on an 11.6-inch touch panel.
 
 **Results.**
-The components of the motorcycle are at the time of delivery in the state of development.
-The framework is still in its final stages production.
-The engine and its software are ready for use and would just have to be built in.
-The supply is already developed and just needs to be manufactured.
-The control of the user interface is in the prototype status, however still contains some experimental functions which are still unavailable.
+At the time of submission, the motorcycle was still under development.
+The frame was in its final stages of production.
+The motor and its software were ready for use and would only have to be installed.
+The power supply was fully designed and only needed to be manufactured.
+The user interface was at prototype stage, still carrying experimental functions that were not yet working.

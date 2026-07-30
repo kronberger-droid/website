@@ -137,14 +137,14 @@ blockquote {
 
 /* CV frontpage ------------------------------------------------------------ */
 
-/* On the CV, a bold lead followed by an em-dashed date reads as one line, so
-   the paragraph directly after a bold-led line gets pulled tight against it. */
 .cv h2 {
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--rule);
 }
 
-.cv strong + em,
+/* Dates sit on their own line under the bold lead, joined to it by a markdown
+   hard break. Muted and upright so they read as a column rather than as
+   emphasis. */
 .cv em {
   color: var(--muted);
   font-style: normal;

@@ -10,19 +10,4 @@
   <article class="cv">
     {{ section.content | safe }}
   </article>
-
-  {% set blog = get_section(path="blog/_index.md") %}
-  {% if blog.pages | length > 0 %}
-    <section class="recent">
-      <h2>Recent posts</h2>
-      <ul class="post-list">
-        {% for post in blog.pages | slice(end=3) %}
-          <li>
-            <time datetime="{{ post.date }}">{{ post.date | date(format="%Y-%m-%d") }}</time>
-            <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
 {% endblock %}

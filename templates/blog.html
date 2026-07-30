@@ -6,14 +6,21 @@
   <h1>{{ section.title }}</h1>
   {{ section.content | safe }}
 
-  <ul class="post-list">
-    {# Sorted by `sort_by = "date"` in the section front matter, newest first. #}
-    {% for post in section.pages %}
-      <li>
-        <time datetime="{{ post.date }}">{{ post.date | date(format="%Y-%m-%d") }}</time>
-        <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
-        {% if post.description %}<p class="excerpt">{{ post.description }}</p>{% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+  {# The empty state sits outside the list rather than as a lone <li>, since
+     `.post-list li` is a flex row with a rule under it — styling meant for
+     posts, not for a placeholder. #}
+  {% if section.pages | length > 0 %}
+    <ul class="post-list">
+      {# Sorted by `sort_by = "date"` in the section front matter, newest first. #}
+      {% for post in section.pages %}
+        <li>
+          <time datetime="{{ post.date }}">{{ post.date | date(format="%Y-%m-%d") }}</time>
+          <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+          {% if post.description %}<p class="excerpt">{{ post.description }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="empty">Nothing written here yet.</p>
+  {% endif %}
 {% endblock %}

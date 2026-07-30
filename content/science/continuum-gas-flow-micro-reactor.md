@@ -13,5 +13,5 @@ Understanding catalytic processes at the atomic scale under realistic conditions
 In particular, the study of single-atom catalysis at near-ambient pressures requires specialized experimental setups, such as high-pressure micro-reactor cells integrated into ultra-high vacuum (UHV) systems.
 This thesis develops an analytical framework to describe gas flow behavior within such a micro-reactor, focusing on the continuum flow regime.
 Critical state variables and flow velocities at relevant locations are estimated to provide a reliable macroscopic flow description.
-While effects such as leakage and outlet flow remain to be quantified in detail and should incorporate advanced numerical simulations and experimental validation to improve the model accuracy and applicability.
+Effects such as leakage and outlet flow remain to be quantified in detail; doing so should incorporate advanced numerical simulations and experimental validation to improve the model's accuracy and applicability.
 The presented approach lays the groundwork for future microscopic flow studies.

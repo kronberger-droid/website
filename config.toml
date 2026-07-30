@@ -4,7 +4,7 @@
 base_url = "https://kron-berger.com"
 
 title = "Martin Kronberger"
-description = "Computational physics, Rust, and things I have written down."
+description = "Surface science, Rust, and things I have written down."
 
 default_language = "en"
 
@@ -40,7 +40,7 @@ dark_theme = "github-dark"
 # Everything under [extra] is yours — Zola passes it to templates as `config.extra`.
 # Used by templates/base.html for the header and footer.
 author = "Martin Kronberger"
-email = "martin.kronberger@gmx.at"
+email = "kronberger@proton.me"
 github = "https://github.com/kronberger-droid"
 
 # Header navigation. Order here is the order rendered.
